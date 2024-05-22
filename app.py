@@ -27,8 +27,11 @@ class InferlessPythonModel:
         if not isinstance(chunks, list) or not all(isinstance(chunk, str) for chunk in chunks):
             raise ValueError("Chunks must be a list of strings")
         combined_input = [f"{query} {chunk}" for chunk in chunks]
-        results = self.generator(combined_input)
+        
+        results = self.generator.compute_score(combined_input)
+        
         print("Results structure:", results, flush=True)
+        
         for i in range(len(results)):
             print(f"Result {i}: {results[i]}")
             if isinstance(results[i], list) and len(results[i]) > 0 and isinstance(results[i][0], dict):
