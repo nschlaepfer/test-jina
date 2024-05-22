@@ -48,7 +48,7 @@ class InferlessPythonModel:
         else:
             print(f"Unexpected result format: {result}", flush=True)
 
-        return {"result": result_texts, "scores" results}
+        return {"result": result_texts, "scores" result_scores}
 
 
     def finalize(self):
