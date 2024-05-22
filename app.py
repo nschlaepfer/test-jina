@@ -43,10 +43,10 @@ class InferlessPythonModel:
         result_scores = []
 
         for result in ranked_results:
-                result_texts.append(result['chunk'])
-                result_scores.append(result['score'])
-            else:
-                print(f"Unexpected result format: {result}", flush=True)
+            result_texts.append(result['chunk'])
+            result_scores.append(result['score'])
+        else:
+            print(f"Unexpected result format: {result}", flush=True)
 
         return {"result": result_texts, "scores" results}
 
