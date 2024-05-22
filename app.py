@@ -26,26 +26,31 @@ class InferlessPythonModel:
         results = self.generator.compute_score(combined_input)
         
         print("Results structure:", results, flush=True)
-        
+
+        # Make key-value pairs for the score
+        key_val = []
         for i in range(len(results)):
-            print(f"Result {i}: {results[i]}")
-            if isinstance(results[i], list) and len(results[i]) > 0 and isinstance(results[i][0], dict):
-                results[i][0]['text'] = chunks[i]
-            else:
-                print(f"Unexpected result format at index {i}: {results[i]}", flush=True)
+            key_val.append({"chunk": chucks[i], "score" : results[i] })
+
+        # Sort according to score        
         try:
-            ranked_results = sorted(results, key=lambda x: x[0]['score'], reverse=True)
+            ranked_results = ranked_results = sorted(key_val, key=lambda x: x['score'], reverse=False)
         except (TypeError, KeyError, IndexError) as e:
             print(f"Error during sorting: {e}", flush=True)
-            ranked_results = results
+            ranked_results = key_val
             
         result_texts = []
+        result_scores = []
+
         for result in ranked_results:
-            if isinstance(result, list) and len(result) > 0 and isinstance(result[0], dict) and 'text' in result[0]:
-                result_texts.append(str(result[0]['text']))
+                result_texts.append(result['chunk'])
+                result_scores.append(result['score'])
             else:
                 print(f"Unexpected result format: {result}", flush=True)
-        return {"result": result_texts}
+
+        return {"result": result_texts, "scores" results}
+
+
     def finalize(self):
         self.generator = None
         print("Pipeline finalized.", flush=True)
