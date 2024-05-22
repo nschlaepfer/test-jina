@@ -1,7 +1,7 @@
 import json
 import numpy as np
 import torch
-from transformers import pipeline
+from transformers import pipeline, AutoModelForSequenceClassification
 
 class InferlessPythonModel:
     def initialize(self):
