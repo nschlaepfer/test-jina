@@ -30,7 +30,7 @@ class InferlessPythonModel:
         # Make key-value pairs for the score
         key_val = []
         for i in range(len(results)):
-            key_val.append({"chunk": chucks[i], "score" : results[i] })
+            key_val.append({"chunk": chunks[i], "score" : results[i] })
 
         # Sort according to score        
         try:
