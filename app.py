@@ -21,7 +21,7 @@ class InferlessPythonModel:
         chunks = input_json['chunks']
         if not isinstance(chunks, list) or not all(isinstance(chunk, str) for chunk in chunks):
             raise ValueError("Chunks must be a list of strings")
-        combined_input = [f"{query} {chunk}" for chunk in chunks]
+        combined_input = [[query, chunk] for chunk in chunks]
         
         results = self.generator.compute_score(combined_input)
         
