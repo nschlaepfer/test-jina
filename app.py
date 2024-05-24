@@ -3,6 +3,9 @@ import numpy as np
 import torch
 from transformers import pipeline, AutoModelForSequenceClassification
 
+torch.manual_seed(0)
+torch.use_deterministic_algorithms(True)
+
 class InferlessPythonModel:
     def initialize(self):
         try:
