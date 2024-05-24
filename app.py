@@ -6,7 +6,7 @@ from transformers import pipeline, AutoModelForSequenceClassification
 class InferlessPythonModel:
     def initialize(self):
         try:
-            self.generator = AutoModelForSequenceClassification.from_pretrained('jinaai/jina-reranker-v1-turbo-en', num_labels=1, trust_remote_code=True) 
+            self.generator = AutoModelForSequenceClassification.from_pretrained('jinaai/jina-reranker-v1-tiny-en', num_labels=1, trust_remote_code=True) 
             print("Pipeline initialized successfully.")
         except Exception as e:
             print(f"Error initializing pipeline: {e}")
